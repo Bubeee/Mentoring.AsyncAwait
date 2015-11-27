@@ -13,19 +13,19 @@ namespace Task1
             Console.WriteLine("Enter the natural number N");
             int.TryParse(Console.ReadLine(), out n);
             var cancellationTokenSource = new CancellationTokenSource();
-            var result = Task.Run(() => SumAsync(n, cancellationTokenSource.Token));
-            result.ContinueWith(task => Console.WriteLine("The result is: {0}", task.Result), TaskContinuationOptions.NotOnCanceled);
 
-            Console.WriteLine("Enter the natural number N");
-            while (int.TryParse(Console.ReadLine(), out n))
+            do
             {
                 cancellationTokenSource.Cancel();
                 cancellationTokenSource = new CancellationTokenSource();
-                result = Task.Run(() => SumAsync(n, cancellationTokenSource.Token));
-                result.ContinueWith(task => Console.WriteLine("The result is: {0}", task.Result), TaskContinuationOptions.NotOnCanceled);
+                var result = Task.Run(() => SumAsync(n, cancellationTokenSource.Token));
+                result.ContinueWith(
+                    task => Console.WriteLine("The result is: {0}", task.Result),
+                    TaskContinuationOptions.NotOnCanceled);
 
                 Console.WriteLine("Enter the natural number N");
             }
+            while (int.TryParse(Console.ReadLine(), out n));
 
             Console.WriteLine("The end");
             Console.ReadLine();
