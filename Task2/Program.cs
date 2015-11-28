@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
 namespace Task2
 {
@@ -12,9 +8,9 @@ namespace Task2
         {
         }
 
-        private static async Task DownloadAsync()
+        private static Task DownloadAsync()
         {
-
+            return null;
         }
     }
 }
